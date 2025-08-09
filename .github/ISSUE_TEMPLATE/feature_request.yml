@@ -1,0 +1,63 @@
+name: Feature request
+description: Suggest an idea or task for Serial Commander
+labels: ["type:feature"]
+title: "feat: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please fill the sections below so we can scope it well.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: One sentence explaining the feature or task
+      placeholder: e.g., Add USB detach handling and graceful reconnect
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & problem
+      description: Why do we need this? What problem does it solve? Any constraints?
+      placeholder: |
+        - USB host mode drops when the device is unplugged
+        - We need to cancel coroutines and show a reconnect CTA
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Outline design/approach, APIs, and key steps
+      placeholder: |
+        - Observe ACTION_USB_DEVICE_DETACHED via BroadcastReceiver
+        - Cancel connection scope; close UsbDeviceConnection in finally
+        - Update UiState to Disconnected; show snackbar with Retry
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Bullet points that define “done”
+      placeholder: |
+        - Detach triggers disconnect without a crash
+        - UI shows reconnect button
+        - Unit test covers the detach scenario
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks & trade-offs
+      placeholder: |
+        - Device-specific drivers may not emit detach reliably
+        - Need to debounce reconnect attempts
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimate
+      placeholder: "e.g., 4 hours"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: Tests added/updated
+        - label: Docs/README updated (if needed)
+        - label: Telemetry/logs considered
