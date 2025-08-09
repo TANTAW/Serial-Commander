@@ -1,0 +1,65 @@
+name: Bug report
+description: File a bug for Serial Commander
+labels: ["type:bug"]
+title: "bug: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please provide enough detail to reproduce.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      placeholder: e.g., USB read loop hangs after 1 minute under heavy load
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1) Connect FTDI device
+        2) Start session and send 1000 frames
+        3) Observe read loop stop emitting
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / stack traces / screenshots
+      description: Strip any sensitive data
+      render: shell
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - USB transport
+        - Bluetooth transport
+        - Framing/decoder
+        - Retry/backoff
+        - UI/Compose
+        - Room/WorkManager
+        - CI/Build
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: Android 12, Pixel 4a; device VID:PID; app commit SHA
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I can reproduce on main
+        - label: I attached relevant logs
+        - label: I included device/OS details
